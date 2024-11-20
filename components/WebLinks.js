@@ -4,13 +4,12 @@
 
 import Image from "next/image";
 import styled from "styled-components";
+import { useState, useEffect } from 'react';
 import { Button, ButtonLink, Container, StyledLink } from "./ReusableStyles";
 import Link from "next/link";
 import { ChevronRightIcon, HexIcon, HomeIcon, TwitterIcon, NewUp, OvalIcon } from './icons';
 import allLinks from "../data/LinksData";
 import bioData from "../data/BioData";
-
-
 
 const Links = () => {
 
@@ -32,16 +31,12 @@ const Links = () => {
   // Check what class to use oval or hex for avatar
   const avatarShape = bioData[0].nftAvatar ? `nft-clipped` : `oval-clipped`
 
-
   // Description and subdescription goes here
   const descriptionText = descShow ? description : `Write your own fall back text if description not in BioData.js or remove me/leave blank`
   const subdescText = subdescShow ? subdesc : `Write your own if you want or just remove me/leave blank`
 
-
   const newProduct = bioData[0].newProduct; // checking for newProduct flag true false
   const newProductUrl = bioData[0].newProductUrl; // get product url if available
-
-
 
   // Collect all links filter by type - social, project, nft and other etc=
   // get data for social section
@@ -64,8 +59,44 @@ const Links = () => {
     return el.type === "projects" && el.on
   });
 
+  const [showNotification, setShowNotification] = useState(false);
+  const [progress, setProgress] = useState(100);
+
+  const handleCopyLink = (url) => {
+    navigator.clipboard.writeText(url).then(() => {
+      setShowNotification(true);
+      setProgress(100);
+    });
+  };
+
+  useEffect(() => {
+    let interval;
+    if (showNotification) {
+      interval = setInterval(() => {
+        setProgress((prevProgress) => {
+          if (prevProgress <= 0) {
+            clearInterval(interval);
+            setShowNotification(false);
+            return 0;
+          } else {
+            return prevProgress - 2;
+          }
+        });
+      }, 100);
+    }
+    return () => clearInterval(interval);
+  }, [showNotification]);
+
   return (
       <LinkWrapper>
+        {showNotification &&
+          <Notification>
+            <NotificationMessage>The ID has been copied. Paste it into your app to add me :)</NotificationMessage>
+            <ProgressBar>
+              <Progress style={{ width: `${progress}%` }} />
+            </ProgressBar>
+          </Notification>
+        }
         <LinkContainer>
           <TopPart>
             <LinkHeader>
@@ -130,11 +161,9 @@ const Links = () => {
                       {
                         copy.map((i) => {
                           return (
-                              <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
-                                <LinkBox>
-                                  <LinkTitle><img src={i.icon} style={{ filter: 'var(--img)' }} /> {i.title}</LinkTitle> <NewUp />
-                                </LinkBox>
-                              </a>
+                              <LinkBox key={i.title} onClick={() => handleCopyLink(i.url)}>
+                                <LinkTitle><img src={i.icon} style={{ filter: 'var(--img)' }} /> {i.title}</LinkTitle> <NewUp />
+                              </LinkBox>
                           )
                         })
                       }
@@ -271,7 +300,7 @@ const Title = styled.div`
     h1{
       font-size: 38px;
       font-weight: 700;
-      
+
       letter-spacing: -2px;
       background: linear-gradient(90deg, #4AB1F1 5.71%, #566CEC 33.77%, #D749AF 61.82%, #FF7C51 91.21%);
       -webkit-background-clip: text;
@@ -293,8 +322,8 @@ const Title = styled.div`
         margin-top:2px;
       }
     }
-    
- 
+
+
     .name{
       margin-top: 8px;
       @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
@@ -362,14 +391,12 @@ const LinkBio = styled.div`
 `
 
 const TopPart = styled.div`
-    
+
 `
-
-
 
 const BottomPart = styled.div`
     margin-bottom: 40px;
-    
+
 `
 const LinkFoot = styled.div`
     h4{
@@ -399,7 +426,6 @@ const WebLinkWrap = styled.div`
        padding: 0 12px;
     }
 `
-
 
 const LinkSection = styled.div`
     padding: 12px 0;
@@ -446,7 +472,7 @@ const LinkBox = styled.div`
     letter-spacing: -.5px;
     position: relative;
     text-align: center;
-    
+
     &::before{
       content: "";
       border-radius: 12px;
@@ -471,7 +497,7 @@ const LinkBox = styled.div`
       transform: scale(.8);
       opacity: .7;
     }
-    
+
     &.socialIcon{
       padding: 16px;
       border-radius: 50%;
@@ -480,7 +506,7 @@ const LinkBox = styled.div`
       img{
         height: 24px;
       }
-     
+
       @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
         padding: 10px;
         margin: 2px;
@@ -520,4 +546,31 @@ const NewSection = styled.div`
        transform: scale(1.01);
       }
     }
+`
+
+const Notification = styled.div`
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50; /* Green background */
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  z-index: 1000;
+`
+const NotificationMessage = styled.div`
+  font-size: 16px;
+  margin-bottom: 8px;
+`
+const ProgressBar = styled.div`
+  width: 100%;
+  height: 4px;
+  background-color: #66bb6a;
+  border-radius: 2px;
+`
+const Progress = styled.div`
+  height: 100%;
+  background-color: #a5d6a7;
+  transition: width 0.1s linear;
 `
