@@ -4,7 +4,7 @@ const bioData = [
         name: 'Pixelmonarch',
         username: 'dotPixelmonarch',
         url: 'https://twitch.tv/dotPixelmonarch',
-        titleImg: true,
+        titleImg: false,
         avatar: '/avatar.jpg',
         nftAvatar: false,
         description: 'Just a random gamer that streams his adventures.',
