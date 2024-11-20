@@ -60,7 +60,7 @@ const Links = () => {
   });
 
   const [showNotification, setShowNotification] = useState(false);
-  const [progress, setProgress] = useState(100);
+  const [progress, setProgress] = useState(0);
 
   const handleCopyLink = (url) => {
     navigator.clipboard.writeText(url).then(() => {
@@ -74,12 +74,12 @@ const Links = () => {
     if (showNotification) {
       interval = setInterval(() => {
         setProgress((prevProgress) => {
-          if (prevProgress <= 0) {
+          if (prevProgress >= 100) {
             clearInterval(interval);
             setShowNotification(false);
             return 0;
           } else {
-            return prevProgress - 2;
+            return prevProgress + 2;
           }
         });
       }, 100);
