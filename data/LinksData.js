@@ -38,14 +38,14 @@ const webLinks = [
         on: true
     },
     {
-        title: 'Reverse: 1999 ID',
+        title: 'Reverse: 1999 ‒ ID',
         url: '410171886',
         type: 'copy',
         icon: '/vercel.svg',
         on: true
     },
     {
-        title: 'Pokémon TCG Pocket ID',
+        title: 'Pokémon TCG Pocket ‒ ID',
         url: '7570-7133-8961-9389',
         type: 'copy',
         icon: '/doc.png',
