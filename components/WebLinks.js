@@ -51,7 +51,7 @@ const Links = () => {
 
   // Get data for install section
   const install = allLinks.filter((el) => {
-    return el.type === "install" && el.on
+    return el.type === "User IDs" && el.on
   });
 
   // Get data for nfts
@@ -61,7 +61,7 @@ const Links = () => {
 
   // Get data for other section
   const others = allLinks.filter((el) => {
-    return el.type === "other" && el.on
+    return el.type === "Projects" && el.on
   });
 
   return (
