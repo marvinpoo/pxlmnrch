@@ -77,7 +77,7 @@ const Links = () => {
           if (prevProgress >= 100) {
             clearInterval(interval);
             setShowNotification(false);
-            return 0;
+            return 100;
           } else {
             return prevProgress + 2;
           }
