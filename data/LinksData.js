@@ -9,8 +9,8 @@ const webLinks = [
         on: true
     },
     {
-        title: 'Twitter',
-        url: 'https://twitter.com/dotPixelmonarch',
+        title: 'X',
+        url: 'https://x.com/dotPixelmonarch',
         type: 'social',
         icon: '/twitter.svg',
         on: true
@@ -31,31 +31,24 @@ const webLinks = [
     },
     // Install section
     {
-        title: 'Use this template',
-        url: 'https://github.com/realvjy/nxt-lnk/generate',
+        title: 'Join the Discord!',
+        url: 'https://discord.gg/CB3U5QcjwQ',
         type: 'install',
         icon: '/use.png',
         on: true
     },
     {
-        title: 'Deploy on Vercel',
-        url: 'https://vercel.com/import/git?s=https://github.com/realvjy/nxt-lnk',
+        title: 'Re99 ID: 410171886',
+        url: 'https://re1999.bluepoch.com/',
         type: 'install',
         icon: '/vercel.svg',
         on: true
     },
     {
-        title: 'Documentation',
-        url: 'https://github.com/realvjy/nxt-lnk#nxt-lnk',
+        title: 'PTCG ID: 7570-7133-8961-9389',
+        url: 'https://tcgpocket.pokemon.com/en-us/',
         type: 'install',
         icon: '/doc.png',
-        on: true
-    },
-    {
-        title: 'Github',
-        url: 'https://github.com/realvjy/nxt-lnk',
-        type: 'install',
-        icon: '/github-fill.svg',
         on: true
     },
 
