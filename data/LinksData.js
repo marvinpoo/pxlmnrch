@@ -70,10 +70,10 @@ const webLinks = [
 
     {
         title: 'maker website',
-        url: 'https://vjy.me',
+        url: 'https://coppnic.cc',
         type: 'projects',
         icon: '/vjy.png',
-        on: false
+        on: true
     },
 ];
 
