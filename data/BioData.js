@@ -11,7 +11,7 @@ const bioData = [
         descShow: true,
         subdesc: 'I am just a random gamer that streams his adventures sometimes. I play rpg, gacha, rythm and strategy. Possible a mix of all of these.',
         subdescShow: true,
-        newProductUrl: 'https://vienna1999.pxlmon.com',
+        newProductUrl: '#',
         newProduct: true,
         author: 'coppnic',
         authorURL: 'https://coppnic.cc',
