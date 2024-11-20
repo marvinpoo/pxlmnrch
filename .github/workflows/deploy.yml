@@ -27,13 +27,13 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies (generate package-lock.json if missing)
+      - name: Install dependencies (with fallback for package-lock.json)
         run: |
           if [ ! -f package-lock.json ]; then
-            echo "package-lock.json not found, running 'npm install' to generate it..."
-            npm install
+            echo "package-lock.json not found, running 'npm install' with --legacy-peer-deps..."
+            npm install --legacy-peer-deps
           fi
-          npm ci
+          npm ci --legacy-peer-deps
 
       - name: Build and export Next.js project
         run: |
