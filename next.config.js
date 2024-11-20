@@ -3,18 +3,17 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   compiler: {
-    // ssr and displayName are configured by default
     styledComponents: true,
   },
   optimizeFonts: false,
 
-  // GitHub Pages static export settings
+  // Enable static export for GitHub Pages
   output: "export",
   basePath: process.env.NODE_ENV === "production" ? "/pxlmnrch" : "",
   assetPrefix: process.env.NODE_ENV === "production" ? "/pxlmnrch/" : "",
   trailingSlash: true,
 
-  // Disable server-side image optimization for static export
+  // Disable server-side image optimization
   images: {
     unoptimized: true,
   },
