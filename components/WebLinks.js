@@ -4,7 +4,7 @@
 
 import Image from "next/image";
 import styled from "styled-components";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button, ButtonLink, Container, StyledLink } from "./ReusableStyles";
 import Link from "next/link";
 import { ChevronRightIcon, HexIcon, HomeIcon, TwitterIcon, NewUp, OvalIcon } from './icons';
@@ -61,180 +61,190 @@ const Links = () => {
 
   const [showNotification, setShowNotification] = useState(false);
   const [progress, setProgress] = useState(0);
+  const intervalRef = useRef(null);
 
   const handleCopyLink = (url) => {
     navigator.clipboard.writeText(url).then(() => {
       setShowNotification(true);
-      setProgress(100);
+      setProgress(0); // Reset progress
     });
   };
 
   useEffect(() => {
-    let interval;
     if (showNotification) {
-      interval = setInterval(() => {
+      // Clear any existing interval
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+      // Start interval
+      intervalRef.current = setInterval(() => {
         setProgress((prevProgress) => {
           if (prevProgress >= 100) {
-            clearInterval(interval);
+            clearInterval(intervalRef.current);
             setShowNotification(false);
             return 100;
           } else {
-            return prevProgress + 2;
+            return prevProgress + 1;
           }
         });
-      }, 100);
+      }, 50);
     }
-    return () => clearInterval(interval);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, [showNotification]);
 
   return (
-      <LinkWrapper>
-        {showNotification &&
-          <Notification>
-            <NotificationMessage>The ID has been copied. Paste it into your app to add me :)</NotificationMessage>
-            <ProgressBar>
-              <Progress style={{ width: `${progress}%` }} />
-            </ProgressBar>
-          </Notification>
-        }
-        <LinkContainer>
-          <TopPart>
-            <LinkHeader>
-              <Avatar>
-                <AvatarWrap>
-                  {/* Avatar svg  hex or oval if nftAvatar=true will convert to hex */}
-                  <HexIcon />
-                  <OvalIcon />
-                  <div className={`${avatarShape} avatar-border`}></div>
-                  <div className={`${avatarShape} avatar-fill`}></div>
-                  <img
-                      src={avatarImg}
-                      className={avatarShape}
-                  />
-                </AvatarWrap>
-              </Avatar>
-              <Title>
-                {/* Using titleimg flag to use image as title or text */}
-                {titleImg ?
-                    <img src={titleImage} className="handle" /> :
-                    <h1>{name}</h1>
-                }
-                {/* if your remove username from data it will not appear */}
-                {
-                  username ? <h3><a href={`${url}`}>{username}</a></h3> : ''
-                }
-              </Title>
-            </LinkHeader>
-
-            {/* Bio Section */}
-            <LinkBio>
-              {description && <h1>{descriptionText} </h1>}
-              {subdesc && <h4>{subdescText}</h4>}
-            </LinkBio>
-            {/* End Bio Section */}
-
-            {/* Weblinks started */}
-            <WebLinkWrap>
-              {/* Social Icon */}
-              <LinkSection className="social">
-                <div className="iconsonly">
-                  {
-                    social.map((i) => {
-                      return (
-                          <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
-                            <LinkBox className="socialIcon">
-                              <img src={i.icon} style={{ filter: 'var(--img)' }} />
-                            </LinkBox>
-                          </a>
-                      )
-                    })
-                  }
-                </div>
-              </LinkSection>
-              {/* Social Icon */}
-
-              {/* Install Section */}
+    <LinkWrapper>
+      {showNotification && (
+        <Notification>
+          <NotificationMessage>The ID has been copied. Paste it into your app to add me :)</NotificationMessage>
+          <ProgressBar>
+            <Progress style={{ width: `${progress}%` }} />
+          </ProgressBar>
+        </Notification>
+      )}
+      <LinkContainer>
+        <TopPart>
+          <LinkHeader>
+            <Avatar>
+              <AvatarWrap>
+                {/* Avatar svg  hex or oval if nftAvatar=true will convert to hex */}
+                <HexIcon />
+                <OvalIcon />
+                <div className={`${avatarShape} avatar-border`}></div>
+                <div className={`${avatarShape} avatar-fill`}></div>
+                <img
+                    src={avatarImg}
+                    className={avatarShape}
+                />
+              </AvatarWrap>
+            </Avatar>
+            <Title>
+              {/* Using titleimg flag to use image as title or text */}
+              {titleImg ?
+                  <img src={titleImage} className="handle" /> :
+                  <h1>{name}</h1>
+              }
+              {/* if your remove username from data it will not appear */}
               {
-                copy.length > 0 ?
-                    <LinkSection>
-                      <h3>{copy[0].type}</h3>
-                      {
-                        copy.map((i) => {
-                          return (
-                              <LinkBox key={i.title} onClick={() => handleCopyLink(i.url)}>
+                username ? <h3><a href={`${url}`}>{username}</a></h3> : ''
+              }
+            </Title>
+          </LinkHeader>
+
+          {/* Bio Section */}
+          <LinkBio>
+            {description && <h1>{descriptionText} </h1>}
+            {subdesc && <h4>{subdescText}</h4>}
+          </LinkBio>
+          {/* End Bio Section */}
+
+          {/* Weblinks started */}
+          <WebLinkWrap>
+            {/* Social Icon */}
+            <LinkSection className="social">
+              <div className="iconsonly">
+                {
+                  social.map((i) => {
+                    return (
+                        <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
+                          <LinkBox className="socialIcon">
+                            <img src={i.icon} style={{ filter: 'var(--img)' }} />
+                          </LinkBox>
+                        </a>
+                    )
+                  })
+                }
+              </div>
+            </LinkSection>
+            {/* Social Icon */}
+
+            {/* Install Section */}
+            {
+              copy.length > 0 ?
+                  <LinkSection>
+                    <h3>{copy[0].type}</h3>
+                    {
+                      copy.map((i) => {
+                        return (
+                            <LinkBox key={i.title} onClick={() => handleCopyLink(i.url)}>
+                              <LinkTitle><img src={i.icon} style={{ filter: 'var(--img)' }} /> {i.title}</LinkTitle> <NewUp />
+                            </LinkBox>
+                        )
+                      })
+                    }
+                  </LinkSection> : ''
+            }
+            {/* End Install Section */}
+
+            {/* NFT Section */}
+            {
+              nfts.length > 0 ?
+                  <LinkSection>
+                    <h3>{nfts[0].type}s</h3>
+                    {
+                      nfts.map((i) => {
+                        return (
+                            <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
+                              <LinkBox>
                                 <LinkTitle><img src={i.icon} style={{ filter: 'var(--img)' }} /> {i.title}</LinkTitle> <NewUp />
                               </LinkBox>
-                          )
-                        })
-                      }
-                    </LinkSection> : ''
-              }
-              {/* End Install Section */}
+                            </a>
+                        )
+                      })
+                    }
+                  </LinkSection>
+                  : ''
+            }
+            {/* End NFT Section */}
 
-              {/* NFT Section */}
-              {
-                nfts.length > 0 ?
-                    <LinkSection>
-                      <h3>{nfts[0].type}s</h3>
-                      {
-                        nfts.map((i) => {
-                          return (
-                              <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
-                                <LinkBox>
-                                  <LinkTitle><img src={i.icon} style={{ filter: 'var(--img)' }} /> {i.title}</LinkTitle> <NewUp />
-                                </LinkBox>
-                              </a>
-                          )
-                        })
-                      }
-                    </LinkSection>
-                    : ''
-              }
-              {/* End NFT Section */}
+            {/* Other Section */}
+            {
+              others.length > 0 ?
+                  <LinkSection>
+                    <h3>{others[0].type}</h3>
+                    {/* BioData.js > newProduct == true */}
+                    {/* New Section will render once newProduct == true */}
+                    {(newProduct) ? <NewSection>
+                      <a href={newProductUrl} target="_blank" rel="noreferrer">
+                        <img
+                            src={'/newproduct.png'}
+                            className="newproduct"
+                        />
+                      </a>
+                    </NewSection> : ''
+                    }
+                    {/* End Biodata.js, You can move this section anywhere */}
+                    {
+                      others.map((i) => {
+                        return (
+                            <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
+                              <LinkBox>
+                                <LinkTitle><img src={i.icon} /> {i.title}</LinkTitle> <NewUp />
+                              </LinkBox>
+                            </a>
+                        )
+                      })
+                    }
+                  </LinkSection> : ''
+            }
+            {/* End Other Section */}
 
-              {/* Other Section */}
-              {
-                others.length > 0 ?
-                    <LinkSection>
-                      <h3>{others[0].type}</h3>
-                      {/* BioData.js > newProduct == true */}
-                      {/* New Section will render once newProduct == true */}
-                      {(newProduct) ? <NewSection>
-                        <a href={newProductUrl} target="_blank" rel="noreferrer">
-                          <img
-                              src={'/newproduct.png'}
-                              className="newproduct"
-                          />
-                        </a>
-                      </NewSection> : ''
-                      }
-                      {/* End Biodata.js, You can move this section anywhere */}
-                      {
-                        others.map((i) => {
-                          return (
-                              <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
-                                <LinkBox>
-                                  <LinkTitle><img src={i.icon} /> {i.title}</LinkTitle> <NewUp />
-                                </LinkBox>
-                              </a>
-                          )
-                        })
-                      }
-                    </LinkSection> : ''
-              }
-              {/* End Other Section */}
+          </WebLinkWrap>
+          {/* End Weblinks */}
+        </TopPart>
+        <BottomPart>
+          <LinkFoot>
+            <h4>{footerText} <a href={authorURL}>{author}</a></h4>
+          </LinkFoot>
+        </BottomPart>
 
-            </WebLinkWrap>
-            {/* End Weblinks */}
-          </TopPart>
-          <BottomPart>
-            <LinkFoot>
-              <h4>{footerText} <a href={authorURL}>{author}</a></h4>
-            </LinkFoot>
-          </BottomPart>
-
-        </LinkContainer>
-      </LinkWrapper>
+      </LinkContainer>
+    </LinkWrapper>
 
   )
 };
@@ -243,6 +253,7 @@ export default Links;
 
 const LinkWrapper = styled(Container)`
 `
+
 const LinkContainer = styled.div`
     min-height: 100vh;
     display: flex;
@@ -300,7 +311,7 @@ const Title = styled.div`
     h1{
       font-size: 38px;
       font-weight: 700;
-
+      
       letter-spacing: -2px;
       background: linear-gradient(90deg, #4AB1F1 5.71%, #566CEC 33.77%, #D749AF 61.82%, #FF7C51 91.21%);
       -webkit-background-clip: text;
@@ -322,8 +333,8 @@ const Title = styled.div`
         margin-top:2px;
       }
     }
-
-
+    
+ 
     .name{
       margin-top: 8px;
       @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
@@ -391,12 +402,12 @@ const LinkBio = styled.div`
 `
 
 const TopPart = styled.div`
-
+    
 `
 
 const BottomPart = styled.div`
     margin-bottom: 40px;
-
+    
 `
 const LinkFoot = styled.div`
     h4{
@@ -472,7 +483,7 @@ const LinkBox = styled.div`
     letter-spacing: -.5px;
     position: relative;
     text-align: center;
-
+    
     &::before{
       content: "";
       border-radius: 12px;
@@ -497,7 +508,7 @@ const LinkBox = styled.div`
       transform: scale(.8);
       opacity: .7;
     }
-
+    
     &.socialIcon{
       padding: 16px;
       border-radius: 50%;
@@ -506,7 +517,7 @@ const LinkBox = styled.div`
       img{
         height: 24px;
       }
-
+     
       @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
         padding: 10px;
         margin: 2px;
@@ -520,6 +531,7 @@ const LinkBox = styled.div`
       font-size: 16px;
     }
 `
+
 const LinkTitle = styled.div`
   display: flex;
   font-size: 18px;
@@ -559,18 +571,21 @@ const Notification = styled.div`
   border-radius: 8px;
   z-index: 1000;
 `
+
 const NotificationMessage = styled.div`
   font-size: 16px;
   margin-bottom: 8px;
 `
+
 const ProgressBar = styled.div`
   width: 100%;
   height: 4px;
   background-color: #66bb6a;
   border-radius: 2px;
 `
+
 const Progress = styled.div`
   height: 100%;
   background-color: #a5d6a7;
-  transition: width 0.1s linear;
+  transition: width 0.05s linear;
 `
