@@ -50,7 +50,7 @@ const Links = () => {
   });
 
   // Get data for install section
-  const install = allLinks.filter((el) => {
+  const copy = allLinks.filter((el) => {
     return el.type === "User IDs" && el.on
   });
 
@@ -124,11 +124,11 @@ const Links = () => {
 
               {/* Install Section */}
               {
-                install.length > 0 ?
+                copy.length > 0 ?
                     <LinkSection>
-                      <h3>{install[0].type}</h3>
+                      <h3>{copy[0].type}</h3>
                       {
-                        install.map((i) => {
+                        copy.map((i) => {
                           return (
                               <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
                                 <LinkBox>
