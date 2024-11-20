@@ -30,12 +30,12 @@ const Links = () => {
   const titleImage = "/title.svg";
 
   // Check what class to use oval or hex for avatar
-  const avatarShape = bioData[0].nftAvatar ? nft-clipped : oval-clipped
+  const avatarShape = bioData[0].nftAvatar ? `nft-clipped` : `oval-clipped`
 
 
   // Description and subdescription goes here
-  const descriptionText = descShow ? description : Write your own fall back text if description not in BioData.js or remove me/leave blank
-  const subdescText = subdescShow ? subdesc : Write your own if you want or just remove me/leave blank
+  const descriptionText = descShow ? description : `Write your own fall back text if description not in BioData.js or remove me/leave blank`
+  const subdescText = subdescShow ? subdesc : `Write your own if you want or just remove me/leave blank`
 
 
   const newProduct = bioData[0].newProduct; // checking for newProduct flag true false
@@ -74,8 +74,8 @@ const Links = () => {
                   {/* Avatar svg  hex or oval if nftAvatar=true will convert to hex */}
                   <HexIcon />
                   <OvalIcon />
-                  <div className={${avatarShape} avatar-border}></div>
-                  <div className={${avatarShape} avatar-fill}></div>
+                  <div className={`${avatarShape} avatar-border`}></div>
+                  <div className={`${avatarShape} avatar-fill`}></div>
                   <img
                       src={avatarImg}
                       className={avatarShape}
@@ -90,7 +90,7 @@ const Links = () => {
                 }
                 {/* if your remove username from data it will not appear */}
                 {
-                  username ? <h3><a href={${url}}>{username}</a></h3> : ''
+                  username ? <h3><a href={`${url}`}>{username}</a></h3> : ''
                 }
               </Title>
             </LinkHeader>
@@ -212,9 +212,9 @@ const Links = () => {
 
 export default Links;
 
-const LinkWrapper = styled(Container)
-
-const LinkContainer = styled.div
+const LinkWrapper = styled(Container)`
+`
+const LinkContainer = styled.div`
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -222,9 +222,9 @@ const LinkContainer = styled.div
     align-items: center;
     text-align: center;
     padding: 24px;
+`
 
-
-const LinkHeader = styled.div
+const LinkHeader = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -233,16 +233,16 @@ const LinkHeader = styled.div
     @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
        margin-top: 20px;
     }
+`
 
-
-const Avatar = styled.div
+const Avatar = styled.div`
     height: 90px;
     width: 90px;
     position: relative;
     margin-bottom: 12px;
+`
 
-
-const AvatarWrap = styled.div
+const AvatarWrap = styled.div`
    height: 100%;
    width: 100%;
    filter: drop-shadow(0px 1px 2px var(--avatar-shadow));
@@ -262,9 +262,9 @@ const AvatarWrap = styled.div
         position: absolute;
         background: ${({ theme }) => theme.bg.primary};
    }
+`
 
-
-const Title = styled.div
+const Title = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -309,9 +309,9 @@ const Title = styled.div
         height: 26px;
       }
     }
+`
 
-
-const LinkBio = styled.div
+const LinkBio = styled.div`
     display: flex;
     flex-direction: column;
     h1{
@@ -359,19 +359,19 @@ const LinkBio = styled.div
       }
     }
 
+`
 
-
-const TopPart = styled.div
+const TopPart = styled.div`
     
+`
 
 
 
-
-const BottomPart = styled.div
+const BottomPart = styled.div`
     margin-bottom: 40px;
     
-
-const LinkFoot = styled.div
+`
+const LinkFoot = styled.div`
     h4{
       color: ${({ theme }) => theme.text.secondary};
       line-height: 32px;
@@ -392,16 +392,16 @@ const LinkFoot = styled.div
         }
       }
     }
+`
 
-
-const WebLinkWrap = styled.div
+const WebLinkWrap = styled.div`
     @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
        padding: 0 12px;
     }
+`
 
 
-
-const LinkSection = styled.div
+const LinkSection = styled.div`
     padding: 12px 0;
     display: flex;
     margin: 0 auto;
@@ -429,9 +429,9 @@ const LinkSection = styled.div
         font-size: 11px;
       }
     }
+`
 
-
-const LinkBox = styled.div
+const LinkBox = styled.div`
     padding: 18px 20px;
     border-radius: 12px;
     margin: 8px 18px;
@@ -493,8 +493,8 @@ const LinkBox = styled.div
       padding: 12px 16px;
       font-size: 16px;
     }
-
-const LinkTitle = styled.div
+`
+const LinkTitle = styled.div`
   display: flex;
   font-size: 18px;
   align-items: center;
@@ -505,9 +505,9 @@ const LinkTitle = styled.div
       height: 20px;
       margin-right: 10px;
     }
+`
 
-
-const NewSection = styled.div
+const NewSection = styled.div`
   display: flex;
   align-items: center;
   padding: 16px 20px;
@@ -520,3 +520,4 @@ const NewSection = styled.div
        transform: scale(1.01);
       }
     }
+`
