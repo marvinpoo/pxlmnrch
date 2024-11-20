@@ -1,24 +1,24 @@
 export default {
     openGraph: {
         type: 'website',
-        locale: 'en_IE',
-        title: 'next lnks by realvjy',
-        url: 'https://vjy.me',
-        description: 'Custom bio links for creatives who love coding. Made this first to use for my own weblinks vjy.me/lnk.',
+        locale: 'en_US',
+        title: 'dotPixelmonarch ‒ Biopage',
+        url: 'https://pxlmon.com',
+        description: 'I am just a random gamer that streams his adventures sometimes. I play rpg, gacha, rythm and strategy. Possible a mix of all of these.',
         locale: 'en_EN',
-        keywords: 'designer, product designer, illustrator, indian designer, vijay verma, realvjy, illlustrations, indian illustrator, ui designer india, sushi design system, zomato designer, 3dicons, uiprint, vijay realvjy, indian ui designer, design india, overlayz, nft art',
+        keywords: 'gaming, streamer, stream, twitch streamer, gaming stream',
         images: [
             {
                 width: 1200,
                 height: 630,
-                url: `https://vjy.me/preview.jpg`,
+                url: `https://pxlmon.com/preview.jpg`,
             },
         ],
         site_name: 'realvjy',
     },
     twitter: {
-        handle: '@realvjy',
-        site: 'vjy.me',
+        handle: '@dotPixelmonarch',
+        site: 'pxlmon.com',
         cardType: 'summary_large_image',
     },
 };
