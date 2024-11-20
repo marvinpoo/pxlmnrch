@@ -55,7 +55,7 @@ const webLinks = [
     {
         title: 'Buy Me a Coffee',
         url: 'https://www.buymeacoffee.com/realvjy',
-        type: 'other',
+        type: 'projects',
         icon: '/bmc.png',
         on: true
     },
@@ -63,7 +63,7 @@ const webLinks = [
     {
         title: 'link demo',
         url: 'https://vjy.me/lnk',
-        type: 'other',
+        type: 'projects',
         icon: '/vjy.png',
         on: true
     },
@@ -71,7 +71,7 @@ const webLinks = [
     {
         title: 'maker website',
         url: 'https://vjy.me',
-        type: 'other',
+        type: 'projects',
         icon: '/vjy.png',
         on: true
     },
