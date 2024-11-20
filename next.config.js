@@ -7,13 +7,12 @@ const nextConfig = {
   },
   optimizeFonts: false,
 
-  // Enable static export for GitHub Pages
+  // Static export settings
   output: "export",
-  basePath: process.env.NODE_ENV === "production" ? "/pxlmnrch" : "",
-  assetPrefix: process.env.NODE_ENV === "production" ? "/pxlmnrch/" : "",
+  basePath: "", // No basePath needed since we're using a custom domain
+  assetPrefix: "",
   trailingSlash: true,
 
-  // Disable server-side image optimization
   images: {
     unoptimized: true,
   },
