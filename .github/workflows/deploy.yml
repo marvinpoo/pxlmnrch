@@ -46,6 +46,8 @@ jobs:
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} next build
           ${{ steps.detect-package-manager.outputs.runner }} next export
+      - name: Ensure 'out' directory exists
+        run: mkdir -p out
       - name: Add custom domain
         run: echo "pxlmon.com" > out/CNAME
       - name: Upload artifact
