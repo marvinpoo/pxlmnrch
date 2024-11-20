@@ -38,15 +38,15 @@ const webLinks = [
         on: true
     },
     {
-        title: 'Re99 ID: 410171886',
-        url: 'https://re1999.bluepoch.com/',
+        title: 'Reverse: 1999 ID',
+        url: '410171886',
         type: 'copy',
         icon: '/vercel.svg',
         on: true
     },
     {
-        title: 'PTCG ID: 7570-7133-8961-9389',
-        url: 'https://tcgpocket.pokemon.com/en-us/',
+        title: 'Pokémon TCG Pocket ID',
+        url: '7570-7133-8961-9389',
         type: 'copy',
         icon: '/doc.png',
         on: true
@@ -57,7 +57,7 @@ const webLinks = [
         url: 'https://www.buymeacoffee.com/realvjy',
         type: 'projects',
         icon: '/bmc.png',
-        on: true
+        on: false
     },
 
     {
@@ -65,7 +65,7 @@ const webLinks = [
         url: 'https://vjy.me/lnk',
         type: 'projects',
         icon: '/vjy.png',
-        on: true
+        on: false
     },
 
     {
@@ -73,7 +73,7 @@ const webLinks = [
         url: 'https://vjy.me',
         type: 'projects',
         icon: '/vjy.png',
-        on: true
+        on: false
     },
 ];
 
