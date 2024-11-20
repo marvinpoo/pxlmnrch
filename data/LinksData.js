@@ -33,21 +33,21 @@ const webLinks = [
     {
         title: 'Join the Discord!',
         url: 'https://discord.gg/CB3U5QcjwQ',
-        type: 'install',
+        type: 'copy',
         icon: '/use.png',
         on: true
     },
     {
         title: 'Re99 ID: 410171886',
         url: 'https://re1999.bluepoch.com/',
-        type: 'install',
+        type: 'copy',
         icon: '/vercel.svg',
         on: true
     },
     {
         title: 'PTCG ID: 7570-7133-8961-9389',
         url: 'https://tcgpocket.pokemon.com/en-us/',
-        type: 'install',
+        type: 'copy',
         icon: '/doc.png',
         on: true
     },
