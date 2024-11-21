@@ -34,21 +34,21 @@ const webLinks = [
         title: 'Join the Discord!',
         url: 'https://discord.gg/CB3U5QcjwQ',
         type: 'copy',
-        icon: '/use.png',
+        icon: '/discord.svg',
         on: true
     },
     {
         title: 'Reverse: 1999 ‒ ID',
         url: '410171886',
         type: 'copy',
-        icon: '/vercel.svg',
+        icon: '/re99.svg',
         on: true
     },
     {
         title: 'Pokémon TCG Pocket ‒ ID',
         url: '7570-7133-8961-9389',
         type: 'copy',
-        icon: '/doc.png',
+        icon: '/ptcgp.svg',
         on: true
     },
 
