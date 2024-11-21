@@ -13,7 +13,7 @@ const webLinks = [
         url: 'https://x.com/dotPixelmonarch',
         type: 'social',
         icon: '/twitter.svg',
-        on: true
+        on: false
     },
     {
         title: 'Blusky',
