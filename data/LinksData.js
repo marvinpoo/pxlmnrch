@@ -52,7 +52,7 @@ const webLinks = [
         on: true
     },
     {
-        title: 'Project SEKAI: Colorful Stage',
+        title: 'Colorful Stage ‒ ID',
         url: '546663212859359241',
         type: 'copy',
         icon: '/sekai.svg',
