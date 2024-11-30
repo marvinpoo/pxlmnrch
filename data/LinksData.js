@@ -51,7 +51,13 @@ const webLinks = [
         icon: '/ptcgp.svg',
         on: true
     },
-
+    {
+        title: 'Project SEKAI: Colorful Stage',
+        url: '546663212859359241',
+        type: 'copy',
+        icon: '/sekai.svg',
+        on: true
+    },
     {
         title: 'Buy Me a Coffee',
         url: 'https://www.buymeacoffee.com/realvjy',
