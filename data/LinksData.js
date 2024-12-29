@@ -32,7 +32,7 @@ const webLinks = [
     // Install section
     {
         title: 'Join the Discord!',
-        url: 'https://discord.gg/CB3U5QcjwQ',
+        url: 'https://discord.gg/pixelempire',
         type: 'copy',
         icon: '/discord.svg',
         on: true
@@ -49,13 +49,6 @@ const webLinks = [
         url: '7570-7133-8961-9389',
         type: 'copy',
         icon: '/ptcgp.svg',
-        on: true
-    },
-    {
-        title: 'Colorful Stage ‒ ID',
-        url: '546663212859359241',
-        type: 'copy',
-        icon: '/sekai.svg',
         on: true
     },
     {
