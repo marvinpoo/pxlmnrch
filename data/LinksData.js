@@ -64,7 +64,7 @@ const webLinks = [
         url: 'https://questie.pxlmon.com/',
         type: 'projects',
         icon: '/ez.png',
-        on: true
+        on: false
     },
 
     {
