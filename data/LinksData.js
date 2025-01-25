@@ -60,11 +60,11 @@ const webLinks = [
     },
 
     {
-        title: 'link demo',
-        url: 'https://vjy.me/lnk',
+        title: 'Questie - FFXIV Quest Lines Tracker',
+        url: 'https://questie.pxlmon.com/',
         type: 'projects',
-        icon: '/vjy.png',
-        on: false
+        icon: '/ez.png',
+        on: true
     },
 
     {
